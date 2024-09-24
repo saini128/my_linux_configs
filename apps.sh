@@ -24,7 +24,17 @@ print_status "Updating package lists..."
 sudo apt update && sudo apt upgrade -y
 print_success "System updated"
 
-# Install nvim
+
+# Install Nerd Fonts (Optional step)
+print_status "Installing Nerd Fonts..."
+if sudo apt install -y fonts-firacode; then
+    print_success "Nerd Fonts (Fira Code)"
+    echo -e "${GREEN}DO INSTALL NERD FONTS FOR A BETTER EXPERIENCE${RESET}"
+else
+    print_error "Nerd Fonts"
+fi
+
+
 print_status "Installing Neovim..."
 if sudo apt install -y nvim; then
     print_success "Neovim"
@@ -79,15 +89,6 @@ if sudo snap install flutter --classic; then
     print_success "Flutter"
 else
     print_error "Flutter"
-fi
-
-# Install Nerd Fonts (Optional step)
-print_status "Installing Nerd Fonts..."
-if sudo apt install -y fonts-firacode; then
-    print_success "Nerd Fonts (Fira Code)"
-    echo -e "${GREEN}DO INSTALL NERD FONTS FOR A BETTER EXPERIENCE${RESET}"
-else
-    print_error "Nerd Fonts"
 fi
 
 # Final message
